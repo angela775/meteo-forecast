@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kablammo&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <title>Meteo App</title>
+  </head>
+  <body>
+    <div class="weapp">
+      <header>
+        <form class="search-form" id="search-form">
+          <input
+            type="search"
+            placeholder="Enter a city"
+            required
+            id="search-form-input"
+            class="search-form-input"
+          />
+          <input type="submit" value="search" class="search-form-button" />
+        </form>
+      </header>
+      <main>
+        <div class="wheat-data">
+          <div>
+            <h1 class="wheat-city" id="city"></h1>
+            <p class="wheat-details">
+              <span id="time"></span>,
+              <span id="description"></span>
+              <br />
+              Humidity <strong id="humidity"></strong> , Wind
+              <strong id="windspeed"></strong>
+            </p>
+            <br />
+            <div class="wheater-days">
+              <div class="row">
+                <div class="col-2">
+                  <div class="wheat-fdate">Thu</div>
+                  <div class="wheat-ftemp">
+                    <span class="wheat-ftmin"> 18° </span>
+                    <span class="wheat-ftmax"> 12° </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="wheat-temperature">
+            <div id="icon"></div>
+            <div class="wheat-value" id="temperature"></div>
+            <div class="wheat-unit">°C</div>
+          </div>
+        </div>
+      </main>
+      <footer>
+        Coded by<a
+          href="https://github.com/angela775/meteo.git"
+          target="_blank"
+        >
+          Angela Pérez
+        </a>
+      </footer>
+    </div>
+    <script src="captura.js"></script>
+  </body>
+</html>
