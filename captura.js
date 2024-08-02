@@ -43,8 +43,30 @@ function handleSearchSubmit(event) {
   let searchInput = document.querySelector("#search-form-input");
   searchCity(searchInput.value);
 }
+function displayforecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let days = ["Tue", "wed", "thu", "fri", "sat"];
+  let forecastHtml = "";
+  days.forEach(function (dia) {
+    forecastHtml =
+      forecastHtml +
+      `
+     <div class="wheather-forecast-day">
+              <div class="wheat-fdate">${dia}</div>
+                <div class="wheat-ficon">☀️</div>
+                <div class="wheat-ftemps">
+                   <div class="wheat-ftemp"><strong>15° </strong>
+                   </div>
+                   <div class="wheat-ftemp">9°</div>
+                </div>       
+      </div>
+`;
+  });
+  forecastElement.innerHTML = forecastHtml;
+}
 
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
 searchCity("paris");
+displayforecast();
