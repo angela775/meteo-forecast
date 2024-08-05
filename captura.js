@@ -44,6 +44,11 @@ function handleSearchSubmit(event) {
   let searchInput = document.querySelector("#search-form-input");
   searchCity(searchInput.value);
 }
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+  return days[date.getDay()];
+}
 function getforecast(city) {
   let apiKey = "3t3af9bf15fb2a631460b188a266fbao";
   let apiURL = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
@@ -51,24 +56,31 @@ function getforecast(city) {
   console.log(apiURL);
 }
 function displayforecast(response) {
-  console.log(response.data);
   let forecastElement = document.querySelector("#forecast");
-  let days = ["Tue", "wed", "thu", "fri", "sat"];
   let forecastHtml = "";
-  days.forEach(function (dia) {
-    forecastHtml =
-      forecastHtml +
-      `
+
+  response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      forecastHtml =
+        forecastHtml +
+        `
      <div class="wheather-forecast-day">
-              <div class="wheat-fdate">${dia}</div>
-                <div class="wheat-ficon">☀️</div>
+              <div class="wheat-fdate">${formatDay(day.time)}</div>
+                <div class="wheat-ficon">
+                <img src="${day.condition.icon_url}"/>
+                </div>
                 <div class="wheat-ftemps">
-                   <div class="wheat-ftemp"><strong>15° </strong>
+                   <div class="wheat-ftemp"><strong>${Math.round(
+                     day.temperature.maximum
+                   )}° </strong>
                    </div>
-                   <div class="wheat-ftemp">9°</div>
+                   <div class="wheat-ftemp">${Math.round(
+                     day.temperature.minimum
+                   )}°</div>
                 </div>       
       </div>
 `;
+    }
   });
   forecastElement.innerHTML = forecastHtml;
 }
